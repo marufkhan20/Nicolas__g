@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "MuseoModerno", sans-serif;
+  color: #212121;
+  background-color: #f2f2f3;
+}
+
+/* hero shapes */
+.shapes {
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+.name-shape {
+  margin: 0;
+  position: absolute;
+  transform-origin: center center;
+  z-index: 1;
+}
+
+.unset {
+  position: unset;
+}
+
+.bg-blur {
+  /* Fallback for browsers that do not support backdrop-filter */
+  background: rgba(
+    242,
+    242,
+    243 0.6
+  ); /* Replace with your background color and desired opacity */
+
+  /* Apply the backdrop filter with blur to the background */
+  backdrop-filter: blur(8px); /* Adjust the blur radius as needed */
+}
