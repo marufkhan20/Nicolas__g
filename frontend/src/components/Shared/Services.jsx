@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Heading from "../Shared/Heading";
+import Heading from "./Heading";
 
 const Services = () => {
   return (

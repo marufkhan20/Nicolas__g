@@ -1,9 +1,9 @@
 import CallToAction from "@/components/Home/CallToAction";
 import Companies from "@/components/Home/Companies";
-import GetInTouch from "@/components/Home/GetInTouch";
 import Hero from "@/components/Home/Hero";
-import Services from "@/components/Home/Services";
-import Works from "@/components/Home/Works";
+import GetInTouch from "@/components/Shared/GetInTouch";
+import Services from "@/components/Shared/Services";
+import Works from "@/components/Shared/Works";
 
 const Home = () => {
   return (

@@ -1,11 +1,11 @@
 import Heading from "@/components/Shared/Heading";
 import WorkItem from "./WorkItem";
 
-const Works = () => {
+const Works = ({ title = true }) => {
   return (
     <section className="py-[40px] md:py-[70px] xl:py-[100px] px-5 sm:px-0">
       <div className="container">
-        <Heading title="Recent work" />
+        {title && <Heading title="Recent work" />}
 
         <div className="mt-[60px] flex flex-col gap-6 sm:gap-10 md:gap-20 lg:gap-[100px]">
           <WorkItem
