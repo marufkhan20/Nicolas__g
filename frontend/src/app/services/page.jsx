@@ -4,7 +4,7 @@ import GetInTouch from "@/components/Shared/GetInTouch";
 const ServicesPage = () => {
   return (
     <main>
-      <section className="pt-[180px] pb-[100px] sm:pt-[350px] pb:pb-[250px] px-5 sm:px-0">
+      <section className="pt-[180px] pb-[100px] sm:pt-[350px] lg:pb-[250px] px-5 sm:px-0">
         <div className="container">
           <div>
             <h2 className="text-[45px] sm:text-[60px] md:text-[70px] lg:text-[80px] xl:text-[100px]">
