@@ -1,3 +1,8 @@
+import RelatedCases from "@/components/Service/RelatedCases";
+import ToolsBox from "@/components/Service/ToolsBox";
+import GetInTouch from "@/components/Shared/GetInTouch";
+import Button from "@/components/ui/Button";
+
 const SingleServicePage = () => {
   return (
     <main>
@@ -32,13 +37,13 @@ const SingleServicePage = () => {
         </div>
       </section>
 
-      <section className="font-sans pb-[200px]">
+      <section className="font-sans pb-[60px]  sm:pb-[150px] lg:pb-[200px] px-5 sm:px-0">
         <div className="container">
           <div className="text-center">
-            <h2 className="text-[45px] leading-[45px] sm:text-[60px] sm:leading-[60px] md:text-[70px] md:leading-[70px] lg:text-[80px] lg:leading-[80px] xl:text-[100px] xl:leading-[100px] mb-16 w-[40%] mx-auto">
+            <h2 className="text-[45px] leading-[45px] sm:text-[60px] sm:leading-[60px] md:text-[70px] md:leading-[70px] lg:text-[80px] lg:leading-[80px] xl:text-[100px] xl:leading-[100px] mb-16 sm:w-[60%] xl:w-[40%] mx-auto">
               User-based approach
             </h2>
-            <p className="w-full sm:w-[70%] md:w-[45%] mx-auto text-lg">
+            <p className="w-full sm:w-[80%] md:w-[70%] lg:w-[45%] mx-auto text-lg">
               As tempting as it might be, we promise to resist the temptation of
               blindly following our personal taste or gut feeling. The needs and
               objectives of end-users are the true north star that guides our
@@ -49,7 +54,7 @@ const SingleServicePage = () => {
             </p>
           </div>
 
-          <div className="mt-[200px]">
+          <div className="mt-[100px] sm:mt-[150px] lg:mt-[200px]">
             <div>
               <h3 className="text-[30px]">Methodology</h3>
               <svg
@@ -69,11 +74,13 @@ const SingleServicePage = () => {
             </div>
 
             <div className="mt-6 flex flex-col gap-20">
-              <div className="flex justify-between gap-10">
-                <div className="w-1/2">
-                  <h2 className="text-[55px]">Kick-off</h2>
+              <div className="flex justify-between gap-10 flex-col md:flex-row">
+                <div className="w-full md:w-1/2">
+                  <h2 className="text-[38px] sm:text-[45px] md:text-[55px]">
+                    Kick-off
+                  </h2>
                 </div>
-                <div className="w-1/2 text-xl">
+                <div className="w-full md:w-1/2 text-xl">
                   <p>
                     A successful kick-off relies heavily on a thorough
                     comprehension of the project’s needs, requirements, and
@@ -108,11 +115,13 @@ const SingleServicePage = () => {
                   </ul>
                 </div>
               </div>
-              <div className="flex justify-between gap-10">
-                <div className="w-1/2">
-                  <h2 className="text-[55px]">Architecture</h2>
+              <div className="flex justify-between gap-10 flex-col md:flex-row">
+                <div className="w-full md:w-1/2">
+                  <h2 className="text-[38px] sm:text-[45px] md:text-[55px]">
+                    Architecture
+                  </h2>
                 </div>
-                <div className="w-1/2 text-xl">
+                <div className="w-full md:w-1/2 text-xl">
                   <p>
                     A well thought out sitemap provides a clear and concise
                     visual representation of the website’s navigation structure.
@@ -148,11 +157,13 @@ const SingleServicePage = () => {
                   </ul>
                 </div>
               </div>
-              <div className="flex justify-between gap-10">
-                <div className="w-1/2">
-                  <h2 className="text-[55px]">Prototype</h2>
+              <div className="flex justify-between gap-10 flex-col md:flex-row">
+                <div className="w-full md:w-1/2">
+                  <h2 className="text-[38px] sm:text-[45px] md:text-[55px]">
+                    Prototype
+                  </h2>
                 </div>
-                <div className="w-1/2 text-xl">
+                <div className="w-full md:w-1/2 text-xl">
                   <p>
                     It’s time to leverage our designers’ expertise and transform
                     the previously elaborated brand guidelines into a
@@ -192,54 +203,52 @@ const SingleServicePage = () => {
         </div>
       </section>
 
-      <section className="py-[60px] md:py-[90px] xl:py-[120px] bg-secondary text-white px-5 sm:px-0">
-        <div className="w-[35%] mx-auto text-center">
-          <h2 className="text-[30px] sm:text-[70px] md:text-[120px] font-sans leading-none">
-            Our
-          </h2>
-          <div className="relative flex justify-center">
-            <h2 className="text-[30px] sm:text-[70px] md:text-[120px] absolute top-0 left-[50%] translate-x-[-50%] mx-auto text-primary italic">
-              toolbox
+      <ToolsBox />
+
+      <RelatedCases />
+
+      <section className="pb-[60px]  sm:pb-[150px] lg:pb-[200px] px-5 sm:px-0">
+        <div className="container flex justify-between items-center gap-10 flex-col md:flex-row">
+          <div className="w-full md:w-[60%] overflow-hidden">
+            <h2 className="text-[40px] sm:text-[70px] sm:leading-[70px] lg:leading-[90px] lg:text-[90px] xl:text-[120px] xl:leading-[120px] my-6 font-sans">
+              Discover
+            </h2>
+            <h2 className="text-[40px] sm:text-[70px] sm:leading-[70px] lg:leading-[90px] lg:text-[90px] xl:text-[120px] xl:leading-[120px] my-6">
+              UX / UI design
             </h2>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-[280px] h-[50px] sm:w-[460px] sm:h-[100px] md:w-[520px] md:h-[200px]"
-              viewBox="0 0 1061.378 214.023"
-              style={{ opacity: 1 }}
+              height="76.287"
+              viewBox="0 0 677.747 76.287"
+              style={{ opacity: 1, width: "80%" }}
             >
               <path
-                id="Path_8"
-                data-name="Path 8"
-                d="M430.624,2084.318c-10.27-15.973-205.475,23.228-205.475,76.272S493.3,2254.033,757.7,2255.143s537.089-29.366,526.521-94.552-211.73-117.442-526.521-117.442-430.137,24.064-472.276,33.507"
-                transform="translate(-224.149 -2042.149)"
+                id="Path_4828"
+                data-name="Path 4828"
+                d="M-4676.009-16760.25c242.587,29.016,702.616,36.473,675.478,10.3s-545.27-37.9-617.313,0,342.611,54.021,343.845,35.393-84.495,1.475-139.178,14.7"
+                transform="translate(4676.127 16775.178)"
                 fill="none"
-                stroke="#67ebce"
-                strokeLinecap="round"
-                strokeWidth="5"
+                stroke="#212121"
+                strokeWidth="4"
                 style={{ strokeDashoffset: 0, strokeDasharray: "none" }}
-              ></path>
+              />
             </svg>
           </div>
-          <p className="text-lg font-sans">
-            Just like batman and his trusty utility belt, we too rely on a
-            powerful set of tools to craft top-notch UX/UI projects!
-          </p>
 
-          <div className="flex gap-10 justify-between flex-wrap">
-            <div>
-              <img src="/images/tools/1.svg" alt="tool" />
-            </div>
-            <div>
-              <img src="/images/tools/2.svg" alt="tool" />
-            </div>
-            <img src="/images/tools/3.svg" alt="tool" />
-            <img src="/images/tools/4.svg" alt="tool" />
-            <img src="/images/tools/5.svg" alt="tool" />
-            <img src="/images/tools/6.svg" alt="tool" />
-            <img src="/images/tools/7.svg" alt="tool" />
+          <div className="w-full md:w-[40%] font-sans">
+            <p className="text-lg mb-10">
+              With your new look and feel now firmly established, we can start
+              to craft a digital environment that accurately reflects your brand
+              values and identity. By working together, brand- and UX designers
+              can ensure that your digital experiences are well-rounded and
+              fine-tuned to your target audience.
+            </p>
+            <Button href="#">Discover</Button>
           </div>
         </div>
       </section>
+
+      <GetInTouch />
     </main>
   );
 };
