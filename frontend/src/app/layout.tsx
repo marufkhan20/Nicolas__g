@@ -1,5 +1,6 @@
 import Footer from "@/components/Shared/Footer";
 import Header from "@/components/Shared/Header/index";
+import TidioChat from "@/components/Shared/TidioChat";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -17,6 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
+        <TidioChat />
         {children}
         <Footer />
       </body>
