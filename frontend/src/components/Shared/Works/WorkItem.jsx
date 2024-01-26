@@ -1,8 +1,46 @@
+"use client";
+import gsap from "gsap";
 import Link from "next/link";
+import { useRef } from "react";
+import { useIntersection } from "react-use";
 
-const WorkItem = ({ image, subTitle, title }) => {
+const WorkItem = ({ image, subTitle, title, className }) => {
+  const sectionRef = useRef(null);
+
+  const intersection = useIntersection(sectionRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.2,
+  });
+
+  const fadeIn = (element) => {
+    gsap.to(element, 1, {
+      opacity: 1,
+      x: "0",
+      ease: "power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
+  };
+
+  const fadeOut = (element) => {
+    gsap.to(element, 1, {
+      opacity: 0,
+      x: -500,
+      ease: "power4.out",
+    });
+  };
+
+  intersection && intersection?.intersectionRatio < 0.2
+    ? fadeOut("." + className)
+    : fadeIn("." + className);
   return (
-    <Link href="#" className="bg-blur">
+    <Link
+      ref={sectionRef}
+      href="#"
+      className={`bg-blur work-item translate-x-[-150%] ${className}`}
+    >
       <div>
         <img src={`/images/works/${image}`} alt="work" className="w-full" />
       </div>

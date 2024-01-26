@@ -1,14 +1,21 @@
 "use client";
+import gsap from "gsap";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiMiniBars3BottomRight } from "react-icons/hi2";
 import HeaderModal from "./HeaderModal";
 
 const Header = () => {
   const [openHeaderModal, setOpenHeaderModal] = useState(false);
+
+  useEffect(() => {
+    // GSAP animation code
+    gsap.from(".header", { opacity: 0, duration: 1, y: 50 });
+    gsap.to(".header", { opacity: 1, duration: 1, y: 0 });
+  }, []);
   return (
     <>
-      <header className="absolute top-0 left-0 right-0 w-full flex items-center gap-5 z-20 justify-between px-5 xl:px-[150px] py-[50px]">
+      <header className="absolute header top-0 left-0 right-0 w-full flex items-center gap-5 z-20 justify-between px-5 xl:px-[150px] py-[50px]">
         <Link href="/">
           <img className="w-14" src="/images/logo.webp" alt="logo" />
         </Link>

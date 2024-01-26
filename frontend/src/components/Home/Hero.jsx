@@ -1,4 +1,13 @@
+"use client";
+import gsap from "gsap";
+import { useEffect } from "react";
+
 const Hero = () => {
+  useEffect(() => {
+    // GSAP animation code
+    gsap.from(".hero", { opacity: 0, duration: 1, y: 150 });
+    gsap.to(".hero", { opacity: 1, duration: 1, y: 0 });
+  }, []);
   return (
     <header className="relative min-h-screen py-20 flex flex-col justify-center items-center px-5">
       <div className="shapes">
@@ -31,7 +40,7 @@ const Hero = () => {
         </figure>
       </div>
 
-      <div className="text-center flex flex-col items-center">
+      <div className="text-center flex flex-col items-center hero">
         <h2 className="text-[60px] sm:text-[80px] lg:text-[120px] xl:text-[140px] 2xl:text-[170px] leading-[80px] lg:leading-[120px] xl:leading-[140px] 2xl:leading-[170px]">
           Crafting impactful
         </h2>

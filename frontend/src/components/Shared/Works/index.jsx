@@ -12,21 +12,25 @@ const Works = ({ title = true }) => {
             image="1.jpg"
             subTitle="ATELIER15 – COWORKING BRUSSELS"
             title="Kickstarting a new coworking space in Brussels"
+            className="work-1"
           />
           <WorkItem
             image="2.jpg"
             subTitle="UPTR"
             title="Revamping the largest transport & logistics union of Belgium"
+            className="work-2"
           />
           <WorkItem
             image="3.jpg"
             subTitle="WHITEPAPERLAW"
             title="Crafting crypto law leadership"
+            className="work-3"
           />
           <WorkItem
             image="4.jpg"
             subTitle="WONDERCAR"
             title="Supercharging Belgium’s largest body shop network"
+            className="work-4"
           />
         </div>
       </div>

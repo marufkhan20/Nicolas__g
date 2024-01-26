@@ -1,11 +1,45 @@
+"use client";
 import Button from "@/components/ui/Button";
+import gsap from "gsap";
 import Link from "next/link";
+import { useRef } from "react";
+import { useIntersection } from "react-use";
 
 const ServiceItem = ({ reverse, serialNumber, title, description, image }) => {
+  const sectionRef = useRef(null);
+
+  const intersection = useIntersection(sectionRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 1,
+  });
+
+  const fadeIn = (element) => {
+    gsap.to(element, 1, {
+      opacity: 1,
+      y: -60,
+      ease: "power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
+  };
+
+  const fadeOut = (element) => {
+    gsap.to(element, 1, {
+      opacity: 0,
+      y: -20,
+      ease: "power4.out",
+    });
+  };
+
+  intersection && intersection?.intersectionRatio < 1
+    ? fadeOut(".service-item")
+    : fadeIn(".service-item");
   return (
-    <div>
+    <div ref={sectionRef}>
       <div
-        className={`flex justify-between flex-col-reverse lg:flex-row ${
+        className={`flex justify-between flex-col-reverse lg:flex-row service-item ${
           reverse && "flex-row-reverse"
         } gap-10`}
       >

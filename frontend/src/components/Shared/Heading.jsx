@@ -1,6 +1,36 @@
+"use client";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Heading = ({ title }) => {
+  useEffect(() => {
+    // Use ScrollTrigger here
+    gsap.to(".heading", {
+      opacity: 0,
+      duration: 2,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: ".heading",
+        start: "top center", // Adjust as needed
+        onEnter: () => {
+          gsap.to(".heading", {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.inOut",
+          });
+        },
+        scrub: 1, // Smoothly animates the property as you scroll
+        // once: true,
+        // markers: true,
+      },
+    });
+  }, []);
+
   return (
-    <div className="text-center flex flex-col justify-center items-center gap-1">
+    <div className="text-center flex flex-col justify-center items-center gap-1 heading">
       <h2 className="text-[30px] font-light">{title}</h2>
       <svg
         xmlns="http://www.w3.org/2000/svg"

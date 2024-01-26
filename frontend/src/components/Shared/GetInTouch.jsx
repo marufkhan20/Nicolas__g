@@ -1,10 +1,47 @@
+"use client";
+import gsap from "gsap";
 import Link from "next/link";
+import { useRef } from "react";
+import { useIntersection } from "react-use";
 
 const GetInTouch = () => {
+  const sectionRef = useRef(null);
+
+  const intersection = useIntersection(sectionRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 1,
+  });
+
+  const fadeIn = (element) => {
+    gsap.to(element, 1, {
+      opacity: 1,
+      y: -60,
+      ease: "power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
+  };
+
+  const fadeOut = (element) => {
+    gsap.to(element, 1, {
+      opacity: 0,
+      y: -20,
+      ease: "power4.out",
+    });
+  };
+
+  intersection && intersection?.intersectionRatio < 1
+    ? fadeOut(".getInTouch")
+    : fadeIn(".getInTouch");
   return (
-    <section className="py-[70px] sm:py-[120px] md:py-[160px] lg:py-[200px] xl:py-[250px] bg-primary font-sans px-5 sm:px-0">
-      <div className="container flex items-center justify-center flex-col text-center">
-        <h2 className="text-[35px] sm:text-[70px] md:text-[84px] leading-[40px] sm:leading-[60px] md:leading-[80px]">
+    <section
+      className="py-[70px] sm:py-[120px] md:py-[160px] lg:py-[200px] xl:py-[250px] bg-primary font-sans px-5 sm:px-0"
+      ref={sectionRef}
+    >
+      <div className="container flex items-center justify-center flex-col text-center getInTouch">
+        <h2 className="text-[35px] sm:text-[70px] md:text-[84px] leading-[40px] sm:leading-[60px] md:leading-[80px] ready">
           Ready to make the <br />
           Leap?
         </h2>
