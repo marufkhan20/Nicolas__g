@@ -5,20 +5,18 @@ import Hero from "@/components/Home/Hero";
 import GetInTouch from "@/components/Shared/GetInTouch";
 import Services from "@/components/Shared/Services";
 import Works from "@/components/Shared/Works";
-import gsap from "gsap";
-import { useEffect } from "react";
+import useAnimation from "@/hooks/useAnimation";
 
 const Home = () => {
-  useEffect(() => {
-    // GSAP animation code
-    gsap.from(".hero-description", { opacity: 0, duration: 1, y: 100 });
-    gsap.to(".hero-description", { opacity: 1, duration: 1, y: 0 });
-  }, []);
+  const sectionRef = useAnimation(".hero-description");
   return (
     <main>
       <Hero />
 
-      <div className="container hero-description py-[40px] md:py-[70px] xl:py-[100px] md:w-[60%] 2xl:w-[40%] mx-auto text-center px-5">
+      <div
+        className="container hero-description py-[40px] md:py-[70px] xl:py-[100px] md:w-[60%] 2xl:w-[40%] mx-auto text-center px-5"
+        ref={sectionRef}
+      >
         <p>
           We are a{" "}
           <span className="font-bold">

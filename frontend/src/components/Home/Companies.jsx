@@ -4,7 +4,7 @@ const Companies = () => {
   return (
     <section className="py-[40px] md:py-[70px] xl:py-[100px] px-5 sm:px-0">
       <div className="container">
-        <Heading title="Trusted by" />
+        <Heading title="Trusted by" className="company" />
 
         <div className="mt-[100px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
           <div>
