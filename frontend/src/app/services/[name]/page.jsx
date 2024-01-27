@@ -1,13 +1,28 @@
+"use client";
 import RelatedCases from "@/components/Service/RelatedCases";
 import ToolsBox from "@/components/Service/ToolsBox";
 import GetInTouch from "@/components/Shared/GetInTouch";
 import Button from "@/components/ui/Button";
+import useAnimation from "@/hooks/useAnimation";
+import gsap from "gsap";
+import { useEffect } from "react";
 
 const SingleServicePage = () => {
+  useEffect(() => {
+    // GSAP animation code
+    gsap.from(".service-hero", { opacity: 0, duration: 1, y: 200 });
+    gsap.to(".service-hero", { opacity: 1, duration: 1, y: 0 });
+  }, []);
+
+  const headingRef = useAnimation();
+  const detailsRef = useAnimation();
+  const toolBoxRef = useAnimation();
+  const relatedCaseRef = useAnimation();
+  const discoverRef = useAnimation();
   return (
     <main>
       <section className="pt-[180px] pb-[100px] sm:pt-[200px] lg:pb-[250px] px-5 sm:px-0 font-sans">
-        <div className="container">
+        <div className="container service-hero">
           <div>
             <div
               className={`flex justify-between flex-col-reverse lg:flex-row gap-10 items-center`}
@@ -39,7 +54,7 @@ const SingleServicePage = () => {
 
       <section className="font-sans pb-[60px]  sm:pb-[150px] lg:pb-[200px] px-5 sm:px-0">
         <div className="container">
-          <div className="text-center">
+          <div className="text-center" ref={headingRef}>
             <h2 className="text-[45px] leading-[45px] sm:text-[60px] sm:leading-[60px] md:text-[70px] md:leading-[70px] lg:text-[80px] lg:leading-[80px] xl:text-[100px] xl:leading-[100px] mb-16 sm:w-[60%] xl:w-[40%] mx-auto">
               User-based approach
             </h2>
@@ -73,7 +88,7 @@ const SingleServicePage = () => {
               </svg>
             </div>
 
-            <div className="mt-6 flex flex-col gap-20">
+            <div className="mt-6 flex flex-col gap-20" ref={detailsRef}>
               <div className="flex justify-between gap-10 flex-col md:flex-row">
                 <div className="w-full md:w-1/2">
                   <h2 className="text-[38px] sm:text-[45px] md:text-[55px]">
@@ -203,12 +218,15 @@ const SingleServicePage = () => {
         </div>
       </section>
 
-      <ToolsBox />
+      <ToolsBox toolBoxRef={toolBoxRef} />
 
-      <RelatedCases />
+      <RelatedCases relatedCaseRef={relatedCaseRef} />
 
       <section className="pb-[60px]  sm:pb-[150px] lg:pb-[200px] px-5 sm:px-0">
-        <div className="container flex justify-between items-center gap-10 flex-col md:flex-row">
+        <div
+          className="container flex justify-between items-center gap-10 flex-col md:flex-row"
+          ref={discoverRef}
+        >
           <div className="w-full md:w-[60%] overflow-hidden">
             <h2 className="text-[40px] sm:text-[70px] sm:leading-[70px] lg:leading-[90px] lg:text-[90px] xl:text-[120px] xl:leading-[120px] my-6 font-sans">
               Discover

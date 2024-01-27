@@ -1,7 +1,10 @@
-const ToolsBox = () => {
+const ToolsBox = ({ toolBoxRef }) => {
   return (
     <section className="py-[60px] md:py-[90px] xl:py-[120px] bg-secondary text-white px-5 sm:px-0">
-      <div className="sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[35%] mx-auto text-center">
+      <div
+        className="sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[35%] mx-auto text-center"
+        ref={toolBoxRef}
+      >
         <h2 className="text-[30px] sm:text-[70px] md:text-[120px] font-sans leading-none">
           Our
         </h2>

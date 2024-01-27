@@ -2,7 +2,7 @@
 import Button from "@/components/ui/Button";
 import gsap from "gsap";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useIntersection } from "react-use";
 
 const ServiceItem = ({ reverse, serialNumber, title, description, image }) => {
@@ -11,13 +11,13 @@ const ServiceItem = ({ reverse, serialNumber, title, description, image }) => {
   const intersection = useIntersection(sectionRef, {
     root: null,
     rootMargin: "0px",
-    threshold: 1,
+    threshold: 0.2,
   });
 
   const fadeIn = (element) => {
     gsap.to(element, 1, {
       opacity: 1,
-      y: -60,
+      x: 0,
       ease: "power4.out",
       stagger: {
         amount: 0.3,
@@ -28,14 +28,18 @@ const ServiceItem = ({ reverse, serialNumber, title, description, image }) => {
   const fadeOut = (element) => {
     gsap.to(element, 1, {
       opacity: 0,
-      y: -20,
+      x: -500,
       ease: "power4.out",
     });
   };
 
-  intersection && intersection?.intersectionRatio < 1
-    ? fadeOut(".service-item")
-    : fadeIn(".service-item");
+  useEffect(() => {
+    if (intersection && intersection.intersectionRatio < 0.2) {
+      fadeOut(sectionRef.current);
+    } else {
+      fadeIn(sectionRef.current);
+    }
+  }, [intersection]);
   return (
     <div ref={sectionRef}>
       <div

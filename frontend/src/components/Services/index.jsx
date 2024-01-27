@@ -1,10 +1,13 @@
+"use client";
+import useAnimation from "@/hooks/useAnimation";
 import ServiceItem from "./ServiceItem";
 
 const Services = () => {
+  const sectionRef = useAnimation();
   return (
     <section className="mt-[100px] mb-[150px] font-sans px-5 sm:px-0">
       <div className="container">
-        <div className="text-center">
+        <div className="text-center" ref={sectionRef}>
           <h2 className="text-[45px] sm:text-[60px] md:text-[70px] lg:text-[80px] xl:text-[100px] mb-5">
             it’s a journey
           </h2>

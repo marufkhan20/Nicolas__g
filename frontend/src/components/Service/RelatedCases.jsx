@@ -2,12 +2,12 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const RelatedCases = () => {
+const RelatedCases = ({ relatedCaseRef }) => {
   const [activeCase, setActiveCase] = useState(2);
 
   return (
     <section className="py-[60px] md:py-[120px] xl:py-[200px] px-5 sm:px-0 font-sans">
-      <div className="container">
+      <div className="container" ref={relatedCaseRef}>
         <h2 className="text-center text-[30px]">Related Cases</h2>
 
         <div className="overflow-auto pb-5">

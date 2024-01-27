@@ -1,7 +1,7 @@
 "use client";
 import gsap from "gsap";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useIntersection } from "react-use";
 
 const WorkItem = ({ image, subTitle, title, className }) => {
@@ -16,7 +16,7 @@ const WorkItem = ({ image, subTitle, title, className }) => {
   const fadeIn = (element) => {
     gsap.to(element, 1, {
       opacity: 1,
-      x: "0",
+      x: 0,
       ease: "power4.out",
       stagger: {
         amount: 0.3,
@@ -32,9 +32,13 @@ const WorkItem = ({ image, subTitle, title, className }) => {
     });
   };
 
-  intersection && intersection?.intersectionRatio < 0.2
-    ? fadeOut("." + className)
-    : fadeIn("." + className);
+  useEffect(() => {
+    if (intersection && intersection.intersectionRatio < 0.2) {
+      fadeOut(sectionRef.current);
+    } else {
+      fadeIn(sectionRef.current);
+    }
+  }, [intersection]);
   return (
     <Link
       ref={sectionRef}

@@ -22,13 +22,13 @@ const Header = () => {
         <nav>
           <ul className="flex items-center gap-20">
             <li className="font-extralight text-[18px] transition-all border-b border-transparent hover:border-secondary text-secondary hidden sm:block">
-              <Link href="/">Services</Link>
+              <Link href="/services">Services</Link>
             </li>
             <li className="font-extralight text-[18px] transition-all border-b border-transparent hover:border-secondary text-secondary hidden sm:block">
-              <Link href="/">Work</Link>
+              <Link href="/works">Work</Link>
             </li>
             <li className="font-extralight text-[18px] transition-all border-b border-transparent hover:border-secondary text-secondary hidden sm:block">
-              <Link href="/">Contact</Link>
+              <Link href="/contact">Contact</Link>
             </li>
             <li
               className="font-extralight text-[18px] transition-all text-secondary"

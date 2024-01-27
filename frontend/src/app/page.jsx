@@ -1,11 +1,11 @@
 "use client";
-import CallToAction from "@/components/Home/CallToAction";
-import Companies from "@/components/Home/Companies";
-import Hero from "@/components/Home/Hero";
-import GetInTouch from "@/components/Shared/GetInTouch";
-import Services from "@/components/Shared/Services";
-import Works from "@/components/Shared/Works";
-import useAnimation from "@/hooks/useAnimation";
+import CallToAction from "../components/Home/CallToAction";
+import Companies from "../components/Home/Companies";
+import Hero from "../components/Home/Hero";
+import GetInTouch from "../components/Shared/GetInTouch";
+import Services from "../components/Shared/Services";
+import Works from "../components/Shared/Works";
+import useAnimation from "../hooks/useAnimation";
 
 const Home = () => {
   const sectionRef = useAnimation(".hero-description");
