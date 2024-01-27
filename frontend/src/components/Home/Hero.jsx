@@ -45,14 +45,14 @@ const Hero = () => {
           Crafting impactful
         </h2>
         <div className="relative">
-          <h2 className="text-[60px] sm:text-[80px] lg:text-[120px] xl:text-[140px] 2xl:text-[170px] absolute top-0 left-14 mx-auto">
+          <h2 className="text-[50px] sm:text-[80px] lg:text-[120px] xl:text-[140px] 2xl:text-[170px] absolute top-0 left-14 mx-auto">
             experiences
           </h2>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1061.378 214.023"
             style={{ opacity: 1 }}
-            className="w-[430px] sm:w-[600px] lg:w-[800px] xl:w-[900px] 2xl:w-[1100px] h-[100px] sm:h-[140px] lg:h-[210px] xl:h-[240px] 2xl:h-[280px]"
+            className="w-[370px] sm:w-[600px] lg:w-[800px] xl:w-[900px] 2xl:w-[1100px] h-[80px] sm:h-[140px] lg:h-[210px] xl:h-[240px] 2xl:h-[280px]"
           >
             <path
               id="Path_8"

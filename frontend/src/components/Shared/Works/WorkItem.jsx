@@ -27,7 +27,7 @@ const WorkItem = ({ image, subTitle, title, className }) => {
   const fadeOut = (element) => {
     gsap.to(element, 1, {
       opacity: 0,
-      x: -500,
+      x: -200,
       ease: "power4.out",
     });
   };

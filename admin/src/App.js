@@ -15,6 +15,7 @@ import EditCreditCardPage from "./pages/forms/CreditCards/EditCreditCard";
 import FormNotices from "./pages/forms/Notices";
 import AddNoticePage from "./pages/forms/Notices/AddNotice";
 import EditNoticePage from "./pages/forms/Notices/EditNotice";
+import AddService from "./pages/services/AddService";
 
 function App() {
   return (
@@ -45,6 +46,9 @@ function App() {
             </PublicRoute>
           }
         />
+
+        {/* services */}
+        <Route path="/services/add-service" element={<AddService />} />
 
         {/* campaign */}
         <Route

@@ -1,10 +1,13 @@
+"use client";
+import useAnimation from "@/hooks/useAnimation";
 import Link from "next/link";
 import { ImLinkedin2 } from "react-icons/im";
 
 const Footer = () => {
+  const sectionRef = useAnimation();
   return (
     <footer className="font-sans px-5 sm:px-0">
-      <div className="container">
+      <div className="container" ref={sectionRef}>
         <div className="mt-[50px]">
           <img src="/images/footer-logo.svg" alt="footer logo" />
         </div>
