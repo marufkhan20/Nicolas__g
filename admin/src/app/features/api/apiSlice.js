@@ -29,13 +29,6 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: [
-    "getCreditCards",
-    "getCreditCard",
-    "getCampaigns",
-    "getNotices",
-    "getNotice",
-    "getDashboardInfo",
-  ],
+  tagTypes: ["getServices"],
   endpoints: (builder) => ({}),
 });

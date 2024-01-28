@@ -5,17 +5,10 @@ import PrivateRoute from "./pages/PrivateRoute";
 import PublicRoute from "./pages/PublicRoute";
 import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
-import CreditCards from "./pages/campaign/CreditCards";
-import CreditCardSinglePage from "./pages/campaign/CreditCards/CreditCard";
-import Notices from "./pages/campaign/Notices";
-import NoticeSinglePage from "./pages/campaign/Notices/Notice";
-import FormCreditCards from "./pages/forms/CreditCards";
-import AddCreditCardPage from "./pages/forms/CreditCards/AddCreditCard";
-import EditCreditCardPage from "./pages/forms/CreditCards/EditCreditCard";
-import FormNotices from "./pages/forms/Notices";
-import AddNoticePage from "./pages/forms/Notices/AddNotice";
-import EditNoticePage from "./pages/forms/Notices/EditNotice";
+import Services from "./pages/services";
 import AddService from "./pages/services/AddService";
+import TeamMembersPage from "./pages/teamMembers";
+import AddTeamMemberPage from "./pages/teamMembers/AddTeamMember";
 
 function App() {
   return (
@@ -48,10 +41,18 @@ function App() {
         />
 
         {/* services */}
+        <Route path="/services" element={<Services />} />
         <Route path="/services/add-service" element={<AddService />} />
 
-        {/* campaign */}
+        {/* services */}
+        <Route path="/team-members" element={<TeamMembersPage />} />
         <Route
+          path="/team-members/add-member"
+          element={<AddTeamMemberPage />}
+        />
+
+        {/* campaign */}
+        {/* <Route
           path="/campaign/credit-card"
           element={
             <PrivateRoute>
@@ -82,57 +83,57 @@ function App() {
               <NoticeSinglePage />
             </PrivateRoute>
           }
-        />
+        /> */}
 
         {/* forms */}
-        <Route
-          path="/forms/credit-card"
-          element={
-            <PrivateRoute>
-              <FormCreditCards />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/forms/credit-card/add-credit-card"
-          element={
-            <PrivateRoute>
-              <AddCreditCardPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/forms/credit-card/edit-credit-card/:id"
-          element={
-            <PrivateRoute>
-              <EditCreditCardPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/forms/notice"
-          element={
-            <PrivateRoute>
-              <FormNotices />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/forms/notice/add-notice"
-          element={
-            <PrivateRoute>
-              <AddNoticePage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/forms/notice/edit-notice/:id"
-          element={
-            <PrivateRoute>
-              <EditNoticePage />
-            </PrivateRoute>
-          }
-        />
+        {/* <Route
+      path="/forms/credit-card"
+      element={
+        <PrivateRoute>
+          <FormCreditCards />
+        </PrivateRoute>
+      }
+    />
+    <Route
+      path="/forms/credit-card/add-credit-card"
+      element={
+        <PrivateRoute>
+          <AddCreditCardPage />
+        </PrivateRoute>
+      }
+    />
+    <Route
+      path="/forms/credit-card/edit-credit-card/:id"
+      element={
+        <PrivateRoute>
+          <EditCreditCardPage />
+        </PrivateRoute>
+      }
+    />
+    <Route
+      path="/forms/notice"
+      element={
+        <PrivateRoute>
+          <FormNotices />
+        </PrivateRoute>
+      }
+    />
+    <Route
+      path="/forms/notice/add-notice"
+      element={
+        <PrivateRoute>
+          <AddNoticePage />
+        </PrivateRoute>
+      }
+    />
+    <Route
+      path="/forms/notice/edit-notice/:id"
+      element={
+        <PrivateRoute>
+          <EditNoticePage />
+        </PrivateRoute>
+      }
+    /> */}
       </Routes>
     </>
   );

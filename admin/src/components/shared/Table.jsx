@@ -54,7 +54,7 @@ const Table = ({
 
       <div className="overflow-auto">
         <div
-          className={`min-w-[1100px] m-5 bg-white rounded box-shadow grid ${cols}`}
+          className={`min-w-[1100px] m-5 bg-white rounded box-shadow grid items-center ${cols}`}
         >
           {headers?.map((header, idx) => (
             <span

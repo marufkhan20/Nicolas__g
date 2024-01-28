@@ -6,8 +6,10 @@
 
 body {
   font-family: "MuseoModerno", sans-serif;
-  color: #212121;
-  background-color: #f2f2f3;
+  /* color: #212121; */
+  color: #fff;
+  /* background-color: #f2f2f3; */
+  background-color: #0f172a;
   overflow-x: hidden;
 }
 
