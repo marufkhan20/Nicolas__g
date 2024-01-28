@@ -6,7 +6,7 @@ import { ImLinkedin2 } from "react-icons/im";
 const Footer = () => {
   const sectionRef = useAnimation();
   return (
-    <footer className="font-sans px-5 sm:px-0">
+    <footer className="font-sans px-5 sm:px-0 bg-primary-light pt-5">
       <div className="container" ref={sectionRef}>
         <div className="mt-[50px]">
           <img src="/images/footer-logo.svg" alt="footer logo" />
@@ -66,7 +66,7 @@ const Footer = () => {
               </ul>
               <div className="mt-8">
                 <img
-                  className="w-[160px]"
+                  className="w-[160px] img-white"
                   src="/images/footer-dark.svg"
                   alt="footer"
                 />
@@ -81,7 +81,7 @@ const Footer = () => {
           </p>
           <ul className="flex items-center gap-8">
             <Link href="#">Privacy Policy</Link>
-            <img src="/images/border.svg" alt="" />
+            <img className="w-5" src="/images/border.svg" alt="" />
             <Link href="#">Cookies Policy</Link>
           </ul>
         </div>

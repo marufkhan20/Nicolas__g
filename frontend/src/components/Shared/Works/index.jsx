@@ -1,37 +1,43 @@
 import Heading from "@/components/Shared/Heading";
+import axiosRequest from "@/lib/axiosUtils";
+import { useEffect, useState } from "react";
 import WorkItem from "./WorkItem";
 
 const Works = ({ title = true }) => {
+  const [works, setWorks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axiosRequest("/api/cases"); // Adjust the endpoint
+        console.log("Data from server:", result);
+        setWorks(result);
+      } catch (error) {
+        // Handle errors here
+        console.error("Error in component:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <section className="py-[40px] md:py-[70px] xl:py-[100px] px-5 sm:px-0">
       <div className="container">
         {title && <Heading className="work" title="Recent work" />}
 
         <div className="mt-[60px] flex flex-col gap-6 sm:gap-10 md:gap-20 lg:gap-[100px]">
-          <WorkItem
-            image="1.jpg"
-            subTitle="ATELIER15 – COWORKING BRUSSELS"
-            title="Kickstarting a new coworking space in Brussels"
-            className="work-1"
-          />
-          <WorkItem
-            image="2.jpg"
-            subTitle="UPTR"
-            title="Revamping the largest transport & logistics union of Belgium"
-            className="work-2"
-          />
-          <WorkItem
-            image="3.jpg"
-            subTitle="WHITEPAPERLAW"
-            title="Crafting crypto law leadership"
-            className="work-3"
-          />
-          <WorkItem
-            image="4.jpg"
-            subTitle="WONDERCAR"
-            title="Supercharging Belgium’s largest body shop network"
-            className="work-4"
-          />
+          {works?.length > 0 &&
+            works?.map((work) => (
+              <WorkItem
+                key={work?._id}
+                image={work?.thumbnail}
+                subTitle={work?.category}
+                title={work?.title}
+                className={`work-${work?._id}`}
+                id={work?._id}
+                serviceProvided={work?.serviceProvided}
+              />
+            ))}
         </div>
       </div>
     </section>

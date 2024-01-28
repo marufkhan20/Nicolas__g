@@ -5,6 +5,8 @@ import PrivateRoute from "./pages/PrivateRoute";
 import PublicRoute from "./pages/PublicRoute";
 import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
+import CasesPage from "./pages/cases";
+import AddCasePage from "./pages/cases/AddCase";
 import Services from "./pages/services";
 import AddService from "./pages/services/AddService";
 import TeamMembersPage from "./pages/teamMembers";
@@ -41,14 +43,57 @@ function App() {
         />
 
         {/* services */}
-        <Route path="/services" element={<Services />} />
-        <Route path="/services/add-service" element={<AddService />} />
+        <Route
+          path="/services"
+          element={
+            <PrivateRoute>
+              <Services />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/services/add-service"
+          element={
+            <PrivateRoute>
+              <AddService />
+            </PrivateRoute>
+          }
+        />
 
-        {/* services */}
-        <Route path="/team-members" element={<TeamMembersPage />} />
+        {/* cases */}
+        <Route
+          path="/cases"
+          element={
+            <PrivateRoute>
+              <CasesPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/cases/add-case"
+          element={
+            <PrivateRoute>
+              <AddCasePage />
+            </PrivateRoute>
+          }
+        />
+
+        {/* team members */}
+        <Route
+          path="/team-members"
+          element={
+            <PrivateRoute>
+              <TeamMembersPage />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/team-members/add-member"
-          element={<AddTeamMemberPage />}
+          element={
+            <PrivateRoute>
+              <AddTeamMemberPage />
+            </PrivateRoute>
+          }
         />
 
         {/* campaign */}

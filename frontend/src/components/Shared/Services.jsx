@@ -1,11 +1,29 @@
 "use client";
+import axiosRequest from "@/lib/axiosUtils";
 import gsap from "gsap";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useIntersection } from "react-use";
 import Heading from "./Heading";
 
 const Services = () => {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axiosRequest("/api/services"); // Adjust the endpoint
+        console.log("Data from server:", result);
+        setServices(result);
+      } catch (error) {
+        // Handle errors here
+        console.error("Error in component:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   // const sectionRef = useAnimation(".services");
   const sectionRef = useRef(null);
 
@@ -51,24 +69,16 @@ const Services = () => {
           className="mt-[100px] flex flex-col gap-6 sm:gap-10 md:gap-14 lg:gap-20 items-center services"
           ref={sectionRef}
         >
-          <Link
-            href="#"
-            className="text-[45px] sm:text-[60px] md:text-[70px] lg:text-[84px]"
-          >
-            Branding
-          </Link>
-          <Link
-            href="#"
-            className="text-[45px] sm:text-[60px] md:text-[70px] lg:text-[84px]"
-          >
-            UX/UI Design
-          </Link>
-          <Link
-            href="#"
-            className="text-[45px] sm:text-[60px] md:text-[70px] lg:text-[84px]"
-          >
-            Development
-          </Link>
+          {services?.length > 0 &&
+            services?.map((service) => (
+              <Link
+                key={service?._id}
+                href={`/services/${service?._id}`}
+                className="text-[45px] sm:text-[60px] md:text-[70px] lg:text-[84px]"
+              >
+                {service?.title}
+              </Link>
+            ))}
         </div>
       </div>
     </section>

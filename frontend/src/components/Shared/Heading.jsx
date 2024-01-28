@@ -22,7 +22,7 @@ const Heading = ({ title, className }) => {
           d="M0,8.852C175.35.07,200,7.7,200,7.7"
           transform="translate(0.05 -3.613)"
           fill="none"
-          stroke="#212121"
+          stroke="#fff"
           strokeWidth="2"
           style={{ strokeDashoffset: 0, strokeDasharray: "none" }}
         />

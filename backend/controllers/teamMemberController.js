@@ -4,9 +4,22 @@ const cloudinary = require("../services/cloudinary");
 // get all team members controller
 const getAllTeamMembersController = async (req, res) => {
   try {
-    const { _id } = req.user || {};
-    const teamMembers = await TeamMember.find({ user: _id });
+    // const { _id } = req.user || {};
+    const teamMembers = await TeamMember.find();
     res.status(200).json(teamMembers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+};
+
+// get team member controller
+const getTeamMemberController = async (req, res) => {
+  try {
+    // const { _id } = req.user || {};
+    const { id } = req.params || {};
+    const teamMember = await TeamMember.findById(id);
+    res.status(200).json(teamMember);
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
@@ -59,5 +72,6 @@ const createNewTeamMemberController = async (req, res) => {
 
 module.exports = {
   getAllTeamMembersController,
+  getTeamMemberController,
   createNewTeamMemberController,
 };

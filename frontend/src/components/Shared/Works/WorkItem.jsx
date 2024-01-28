@@ -4,7 +4,14 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { useIntersection } from "react-use";
 
-const WorkItem = ({ image, subTitle, title, className }) => {
+const WorkItem = ({
+  image,
+  subTitle,
+  title,
+  className,
+  id,
+  serviceProvided,
+}) => {
   const sectionRef = useRef(null);
 
   const intersection = useIntersection(sectionRef, {
@@ -42,11 +49,11 @@ const WorkItem = ({ image, subTitle, title, className }) => {
   return (
     <Link
       ref={sectionRef}
-      href="#"
+      href={`/works/${id}`}
       className={`bg-blur work-item translate-x-[-150%] ${className}`}
     >
       <div>
-        <img src={`/images/works/${image}`} alt="work" className="w-full" />
+        <img src={image} alt="work" className="w-full" />
       </div>
       <div className="px-6 pt-3 pb-9">
         <h4 className="font-normal text-lg font-sans">{subTitle}</h4>
@@ -54,21 +61,13 @@ const WorkItem = ({ image, subTitle, title, className }) => {
           {title}
         </h2>
         <ul className="text-lg md:text-[22px] flex flex-wrap items-center gap-3 mt-3">
-          <li className="flex items-center gap-5">
-            <Link href="#">Branding</Link>
-            <img src="/images/border.svg" alt="" />
-          </li>
-          <li className="flex items-center gap-5">
-            <Link href="#">Interior design</Link>
-            <img src="/images/border.svg" alt="" />
-          </li>
-          <li className="flex items-center gap-5">
-            <Link href="#">UI/UX</Link>
-            <img src="/images/border.svg" alt="" />
-          </li>
-          <li>
-            <Link href="#">Development</Link>
-          </li>
+          {serviceProvided &&
+            serviceProvided?.split(",")?.map((item) => (
+              <li className="flex items-center gap-5" key={item}>
+                <Link href="#">{item}</Link>
+                <img className="w-5" src="/images/border.svg" alt="" />
+              </li>
+            ))}
         </ul>
       </div>
     </Link>

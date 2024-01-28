@@ -3,4 +3,5 @@ module.exports = {
   dashboardRoutes: require("./dashboardRoutes"),
   serviceRoutes: require("./serviceRoutes"),
   teamMemberRoutes: require("./teamMemberRoutes"),
+  caseRoutes: require("./caseRoutes"),
 };

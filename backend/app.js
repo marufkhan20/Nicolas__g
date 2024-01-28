@@ -8,6 +8,7 @@ const {
   dashboardRoutes,
   serviceRoutes,
   teamMemberRoutes,
+  caseRoutes,
 } = require("./routes");
 const morgan = require("morgan");
 
@@ -21,7 +22,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [process.env.CLIENT_URL],
+    origin: [process.env.CLIENT_URL, process.env.ADMIN_URL],
   })
 );
 app.use(morgan("dev"));
@@ -35,6 +36,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/team-members", teamMemberRoutes);
+app.use("/api/cases", caseRoutes);
 // app.use("/api/dashboard", dashboardRoutes);
 app.use("/", (req, res) => {
   res.send("Welcome");

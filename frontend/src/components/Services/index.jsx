@@ -1,8 +1,27 @@
 "use client";
 import useAnimation from "@/hooks/useAnimation";
+import axiosRequest from "@/lib/axiosUtils";
+import { useEffect, useState } from "react";
 import ServiceItem from "./ServiceItem";
 
 const Services = () => {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axiosRequest("/api/services"); // Adjust the endpoint
+        console.log("Data from server:", result);
+        setServices(result);
+      } catch (error) {
+        // Handle errors here
+        console.error("Error in component:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const sectionRef = useAnimation();
   return (
     <section className="mt-[100px] mb-[150px] font-sans px-5 sm:px-0">
@@ -20,24 +39,17 @@ const Services = () => {
         </div>
 
         <div className="mt-[200px] flex flex-col gap-[200px]">
-          <ServiceItem
-            title="Branding"
-            serialNumber={1}
-            description="To quote the great and world-famous Marty Neumeier: “Your brand isn’t what you say it is. It’s what they say it is. It’s a person’s gut feeling about a product, service, or organization”. In order to positively influence this gut feeling or reputation we accompany our clients in creating intentional and consistent brands. Whether you are an ambitious company looking to establish your brand or a Fortune 500, we have the expertise and resources to help you achieve your goals."
-            image="1.png"
-          />
-          <ServiceItem
-            serialNumber={2}
-            title="UX – UI design"
-            description="We practice a holistic design approach to create optimal interactions between users, devices, and content, making sure all elements work together seamlessly. Our team of experienced designers combines their deep understanding of the latest technologies and design trends with a consistent focus on the end user. Time and time again, the user’s experience is at the heart of each interaction."
-            image="2.png"
-          />
-          <ServiceItem
-            serialNumber={3}
-            title="Web development"
-            description="As a leading web development studio we deliver cutting-edge solutions for businesses of all sizes. Our team of seasoned developers specializes in custom WordPress themes, providing our clients with an easy-to-use and leading-edge CMS that is tailored to their specific needs. From complex dashboards and web apps to e-commerce integrations, our team of professionals leverages the latest technologies and industry best practices to create visually stunning, secure, fast and SEO-friendly websites."
-            image="3.png"
-          />
+          {services?.length > 0 &&
+            services?.map((service, idx) => (
+              <ServiceItem
+                key={service?._id}
+                title={service?.title}
+                serialNumber={idx + 1}
+                description={service?.shortDescription}
+                image={service?.thumbnail}
+                id={service?._id}
+              />
+            ))}
         </div>
       </div>
     </section>

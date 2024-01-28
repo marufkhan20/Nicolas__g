@@ -3,7 +3,7 @@ import useAnimation from "@/hooks/useAnimation";
 const CallToAction = () => {
   const sectionRef = useAnimation();
   return (
-    <section className="py-[60px] md:py-[90px] xl:py-[120px] bg-secondary text-white font-sans px-5 sm:px-0">
+    <section className="py-[60px] md:py-[90px] xl:py-[120px] bg-primary-light text-white font-sans px-5 sm:px-0">
       <div className="container grid xl:grid-cols-2 gap-5" ref={sectionRef}>
         <div className="text-[60px] md:text-[80px] lg:text-[120px] leading-[80px] lg:leading-[120px]">
           <h2 className="inline-block xl:block mr-5">What’s in </h2>

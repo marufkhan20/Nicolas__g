@@ -5,7 +5,7 @@ import Link from "next/link";
 const GetInTouch = () => {
   const sectionRef = useAnimation();
   return (
-    <section className="py-[70px] sm:py-[120px] md:py-[160px] lg:py-[200px] xl:py-[250px] bg-primary font-sans px-5 sm:px-0">
+    <section className="py-[70px] sm:py-[120px] md:py-[160px] lg:py-[200px] xl:py-[250px] font-sans px-5 sm:px-0">
       <div
         className="container flex items-center justify-center flex-col text-center getInTouch"
         ref={sectionRef}

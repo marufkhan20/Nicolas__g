@@ -4,9 +4,22 @@ const cloudinary = require("../services/cloudinary");
 // get all services controller
 const getAllServicesController = async (req, res) => {
   try {
-    const { _id } = req.user || {};
-    const services = await Service.find({ user: _id });
+    // const { _id } = req.user || {};
+    const services = await Service.find();
     res.status(200).json(services);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+};
+
+// get single service controller
+const getSingleServiceController = async (req, res) => {
+  try {
+    // const { _id } = req.user || {};
+    const { id } = req.params || {};
+    const service = await Service.findById(id);
+    res.status(200).json(service);
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
@@ -79,5 +92,6 @@ const createNewServiceController = async (req, res) => {
 
 module.exports = {
   getAllServicesController,
+  getSingleServiceController,
   createNewServiceController,
 };

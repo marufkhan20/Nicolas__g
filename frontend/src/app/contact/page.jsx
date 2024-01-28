@@ -37,7 +37,7 @@ const ContactPage = () => {
                 d="M430.624,2084.318c-10.27-15.973-205.475,23.228-205.475,76.272S493.3,2254.033,757.7,2255.143s537.089-29.366,526.521-94.552-211.73-117.442-526.521-117.442-430.137,24.064-472.276,33.507"
                 transform="translate(-224.149 -2042.149)"
                 fill="none"
-                stroke="#212121"
+                stroke="#fff"
                 strokeLinecap="round"
                 strokeWidth="5"
                 style={{ strokeDashoffset: 0, strokeDasharray: "none" }}
@@ -49,7 +49,7 @@ const ContactPage = () => {
 
       <section className="font-sans px-5 sm:px-0">
         <div
-          className="container bg-white grid sm:grid-cols-2 lg:grid-cols-3 gap-10 px-16 py-20"
+          className="container bg-primary-light grid sm:grid-cols-2 lg:grid-cols-3 gap-10 px-16 py-20"
           ref={sectionRef}
         >
           <div>

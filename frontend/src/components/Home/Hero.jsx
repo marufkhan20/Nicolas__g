@@ -11,33 +11,7 @@ const Hero = () => {
   return (
     <header className="relative min-h-screen py-20 flex flex-col justify-center items-center px-5">
       <div className="shapes">
-        <figure
-          className="name-shape"
-          data-mobile={{
-            position: {
-              x: "40%",
-              y: "5%",
-              rotation: "",
-              scale: 0.4,
-            },
-          }}
-          style={{
-            top: "50%",
-            left: "50%",
-            transform: "translate3d(-50%,-50%,0) rotate(100deg)",
-            width: "1500px",
-            height: "1500px",
-          }}
-        >
-          <video
-            width="1500"
-            height="1500"
-            src="https://omen.studio/wp-content/uploads/2022/03/blob_2_2.mp4"
-            playsInline
-            muted
-            loop
-          ></video>
-        </figure>
+        <img src="/images/hero.gif" alt="" />
       </div>
 
       <div className="text-center flex flex-col items-center hero">
@@ -68,6 +42,8 @@ const Hero = () => {
           </svg>
         </div>
       </div>
+
+      {/* <div class="bubble"></div> */}
     </header>
   );
 };

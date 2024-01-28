@@ -1,11 +1,17 @@
 "use client";
-import Button from "@/components/ui/Button";
 import gsap from "gsap";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { useIntersection } from "react-use";
 
-const ServiceItem = ({ reverse, serialNumber, title, description, image }) => {
+const ServiceItem = ({
+  reverse,
+  serialNumber,
+  title,
+  description,
+  image,
+  id,
+}) => {
   const sectionRef = useRef(null);
 
   const intersection = useIntersection(sectionRef, {
@@ -55,18 +61,18 @@ const ServiceItem = ({ reverse, serialNumber, title, description, image }) => {
             {title}
           </h2>
           <p className="text-lg mb-16">{description}</p>
-          <Button>Learn more</Button>
+          <Link href={`/services/${id}`}>Learn more</Link>
         </div>
         <div className="w-full lg:w-[40%]">
           <img
-            src={`/images/services/${image}`}
+            src={image}
             className="rounded-tl-full rounded-tr-full"
             alt="service"
           />
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-between gap-10 mt-20">
+      {/* <div className="flex flex-col lg:flex-row justify-between gap-10 mt-20">
         <div className="w-full lg:w-[30%]">
           <Link
             href="#"
@@ -89,7 +95,7 @@ const ServiceItem = ({ reverse, serialNumber, title, description, image }) => {
                   d="M0,0C7.58,4.887,8.45,10.1,8.45,10.1S7.532,4.2,14.283,0"
                   transform="matrix(0.07, -0.998, 0.998, 0.07, 1327.474, 1847.37)"
                   fill="none"
-                  stroke="#212121"
+                  stroke="#fff"
                   stroke-width="2"
                 ></path>
                 <path
@@ -98,7 +104,7 @@ const ServiceItem = ({ reverse, serialNumber, title, description, image }) => {
                   d="M26,0C9.331,3.211,10.67-.129.431,1.963c-.086.016-.257.055-.431.092"
                   transform="matrix(0.998, 0.07, -0.07, 0.998, 1310.632, 1838.085)"
                   fill="none"
-                  stroke="#212121"
+                  stroke="#fff"
                   stroke-width="2"
                 ></path>
               </g>
@@ -119,7 +125,7 @@ const ServiceItem = ({ reverse, serialNumber, title, description, image }) => {
           <Link href="#">Packaging</Link>
           <Link href="#">Print</Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
