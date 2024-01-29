@@ -7,8 +7,8 @@ export const serviceApi = apiSlice.injectEndpoints({
       providesTags: ["getServices"],
     }),
     getService: builder.query({
-      query: (id) => `/api//${id}`,
-      providesTags: ["getCreditCard"],
+      query: (id) => `/api/services/${id}`,
+      providesTags: ["getService"],
     }),
     createService: builder.mutation({
       query: (data) => ({
@@ -16,38 +16,30 @@ export const serviceApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["getServices"],
+      invalidatesTags: ["getServices", "getDashboardInfo"],
     }),
-    uploadCreditCardInfo: builder.mutation({
-      query: (data) => ({
-        url: `/api/credit-cards/upload-credit-card-info`,
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["getCreditCards", "getCampaigns", "getDashboardInfo"],
-    }),
-    updateCreditCard: builder.mutation({
+    updateService: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/api/credit-cards/${id}`,
+        url: `/api/services/${id}`,
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["getCreditCards", "getCreditCard", "getDashboardInfo"],
+      invalidatesTags: ["getServices", "getService"],
     }),
-    deleteCreditCard: builder.mutation({
+    deleteService: builder.mutation({
       query: (id) => ({
-        url: `/api/credit-cards/${id}`,
+        url: `/api/services/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["getCreditCards", "getDashboardInfo"],
+      invalidatesTags: ["getServices", "getDashboardInfo"],
     }),
   }),
 });
 
 export const {
   useGetServicesQuery,
+  useGetServiceQuery,
   useCreateServiceMutation,
-  useUploadCreditCardInfoMutation,
-  useUpdateCreditCardMutation,
-  useDeleteCreditCardMutation,
+  useUpdateServiceMutation,
+  useDeleteServiceMutation,
 } = serviceApi;

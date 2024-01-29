@@ -1,17 +1,35 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { useCreateTeamMemberMutation } from "../../../app/features/teamMember/teamMemberApi";
-import Button from "../../ui/Button";
-import Input from "../../ui/Input";
-import Label from "../../ui/Label";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  useGetTeamMemberQuery,
+  useUpdateTeamMemberMutation,
+} from "../../app/features/teamMember/teamMemberApi";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import Label from "../ui/Label";
 
-const AddTeamMember = () => {
+const EditTeamMember = () => {
   const [profilePic, setProfilePic] = useState("");
   const [name, setName] = useState();
   const [description, setDescription] = useState();
   const [position, setPosition] = useState();
+
+  const { id } = useParams();
+  console.log("id", id);
+
+  // get team data
+  const { data: team } = useGetTeamMemberQuery(id);
+
+  useEffect(() => {
+    if (team?._id) {
+      setProfilePic(team?.profilePic);
+      setName(team?.name);
+      setDescription(team?.description);
+      setPosition(team?.position);
+    }
+  }, [team]);
 
   const router = useNavigate();
 
@@ -25,30 +43,35 @@ const AddTeamMember = () => {
     };
   };
 
-  // create new team member
-  const [createTeamMember, { data: newTeamMember, isLoading, isError, error }] =
-    useCreateTeamMemberMutation();
+  // update team member
+  const [
+    updateTeamMember,
+    { data: updatedTeamMember, isLoading, isError, error },
+  ] = useUpdateTeamMemberMutation();
 
   useEffect(() => {
     if (!isLoading && isError) {
       toast.error(error?.message);
     }
 
-    if (!isLoading && newTeamMember?._id) {
-      toast.success("Team Member Created Successfully");
+    if (!isLoading && updatedTeamMember?._id) {
+      toast.success("Team Member Updated Successfully");
       router("/team-members");
     }
-  }, [newTeamMember, isLoading, isError, error, router]);
+  }, [updatedTeamMember, isLoading, isError, error, router]);
 
   // const submit handler
   const submitHandler = (e) => {
     e.preventDefault();
 
-    createTeamMember({
-      name,
-      profilePic,
-      description,
-      position,
+    updateTeamMember({
+      id,
+      data: {
+        name,
+        profilePic,
+        description,
+        position,
+      },
     });
   };
   return (
@@ -112,7 +135,7 @@ const AddTeamMember = () => {
 
           <div>
             <Button loading={isLoading} type="submit">
-              Create Member
+              Update Member
             </Button>
           </div>
         </div>
@@ -121,4 +144,4 @@ const AddTeamMember = () => {
   );
 };
 
-export default AddTeamMember;
+export default EditTeamMember;

@@ -1,5 +1,5 @@
 import React from "react";
-import AddService from "../../components/services/addService";
+import AddService from "../../components/services/AddService";
 import BreadCumb from "../../components/shared/BreadCumb";
 import DashboardLayout from "../../components/shared/DashboardLayout";
 

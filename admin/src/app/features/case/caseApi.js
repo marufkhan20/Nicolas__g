@@ -6,9 +6,9 @@ export const serviceApi = apiSlice.injectEndpoints({
       query: () => `/api/cases`,
       providesTags: ["getCases"],
     }),
-    getService: builder.query({
-      query: (id) => `/api//${id}`,
-      providesTags: ["getCreditCard"],
+    getCase: builder.query({
+      query: (id) => `/api/cases/${id}`,
+      providesTags: ["getCase"],
     }),
     createCase: builder.mutation({
       query: (data) => ({
@@ -16,38 +16,30 @@ export const serviceApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["getCases"],
+      invalidatesTags: ["getCases", "getDashboardInfo"],
     }),
-    uploadCreditCardInfo: builder.mutation({
-      query: (data) => ({
-        url: `/api/credit-cards/upload-credit-card-info`,
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["getCreditCards", "getCampaigns", "getDashboardInfo"],
-    }),
-    updateCreditCard: builder.mutation({
+    updateCase: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/api/credit-cards/${id}`,
+        url: `/api/cases/${id}`,
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["getCreditCards", "getCreditCard", "getDashboardInfo"],
+      invalidatesTags: ["getCases", "getCase"],
     }),
-    deleteCreditCard: builder.mutation({
+    deleteCase: builder.mutation({
       query: (id) => ({
-        url: `/api/credit-cards/${id}`,
+        url: `/api/cases/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["getCreditCards", "getDashboardInfo"],
+      invalidatesTags: ["getCases", "getDashboardInfo"],
     }),
   }),
 });
 
 export const {
   useGetCasesQuery,
+  useGetCaseQuery,
   useCreateCaseMutation,
-  useUploadCreditCardInfoMutation,
-  useUpdateCreditCardMutation,
-  useDeleteCreditCardMutation,
+  useUpdateCaseMutation,
+  useDeleteCaseMutation,
 } = serviceApi;

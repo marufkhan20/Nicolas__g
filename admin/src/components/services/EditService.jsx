@@ -3,13 +3,17 @@ import { Editor } from "@tinymce/tinymce-react";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import { useCreateServiceMutation } from "../../../app/features/service/serviceApi";
-import Button from "../../ui/Button";
-import Input from "../../ui/Input";
-import Label from "../../ui/Label";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  useGetServiceQuery,
+  useUpdateServiceMutation,
+} from "../../app/features/service/serviceApi";
+import Loading from "../shared/Loading";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import Label from "../ui/Label";
 
-const AddService = () => {
+const EditService = () => {
   const [thumbnail, setThumbnail] = useState("");
   const [title, setTitle] = useState();
   const [shortDescription, setShortDescription] = useState();
@@ -27,6 +31,24 @@ const AddService = () => {
   const [sectionSubTitle, setSectionSubTitle] = useState();
   const [sectionDescription, setSectionDescription] = useState();
   const [sectionImages, setSectionImages] = useState([]);
+
+  const { id } = useParams();
+
+  // get single service
+  const { data: service, isLoading: serviceLoading } = useGetServiceQuery(id);
+
+  useEffect(() => {
+    if (!serviceLoading && service?._id) {
+      setThumbnail(service?.thumbnail);
+      setTitle(service?.title);
+      setShortDescription(service?.shortDescription);
+      setDescription(service?.description);
+      setSectionTitle(service?.sectionTitle);
+      setSectionSubTitle(service?.sectionSubTitle);
+      setSectionDescription(service?.sectionDescription);
+      setSectionImages(service?.sectionImages);
+    }
+  }, [service, serviceLoading]);
 
   const router = useNavigate();
 
@@ -119,39 +141,55 @@ const AddService = () => {
       });
   };
 
-  // create new service
-  const [createService, { data: newService, isLoading, isError, error }] =
-    useCreateServiceMutation();
+  // edit service
+  const [updateService, { data: updatedService, isLoading, isError, error }] =
+    useUpdateServiceMutation();
 
   useEffect(() => {
     if (!isLoading && isError) {
       toast.error(error?.message);
     }
 
-    if (!isLoading && newService?._id) {
-      toast.success("Service Created Successfully");
+    if (!isLoading && updatedService?._id) {
+      toast.success("Service Updated Successfully");
       router("/services");
     }
-  }, [newService, isLoading, isError, error, router]);
+  }, [updatedService, isLoading, isError, error, router]);
 
   // const submit handler
   const submitHandler = (e) => {
     e.preventDefault();
 
-    console.log("description", description);
+    const updatedDetails = description?.details?.map((item) => {
+      if (typeof item?.details === "string") {
+        return item;
+      } else {
+        return {
+          ...item,
+          details: item?.details?.level?.content,
+        };
+      }
+    });
 
-    createService({
-      title,
-      shortDescription,
-      thumbnail,
-      description,
-      sectionTitle,
-      sectionSubTitle,
-      sectionDescription,
-      sectionImages,
+    updateService({
+      id,
+      data: {
+        title,
+        shortDescription,
+        thumbnail,
+        description: { title: description?.title, details: updatedDetails },
+        sectionTitle,
+        sectionSubTitle,
+        sectionDescription,
+        sectionImages,
+      },
     });
   };
-  return (
+  return serviceLoading ? (
+    <div className="w-full min-h-screen flex items-center justify-center">
+      <Loading />
+    </div>
+  ) : (
     <div className="mt-7 box-shadow rounded-xl p-5">
       <form onSubmit={submitHandler}>
         <div className="flex flex-col gap-6">
@@ -227,10 +265,11 @@ const AddService = () => {
               <div className="flex flex-col gap-2">
                 <Label htmlFor="details">Details</Label>
                 <Editor
-                  onInit={(evt, editor) => console.log("editor", editor)}
-                  onEditorChange={(content, editor) =>
-                    changeDescriptionState("details", content, detail?.id)
-                  }
+                  initialValue={detail?.details}
+                  onChange={(content, editor) => {
+                    console.log("content", content?.level?.content);
+                    changeDescriptionState("details", content, detail?.id);
+                  }}
                   init={{
                     height: 300,
                     menubar: false,
@@ -330,7 +369,7 @@ const AddService = () => {
 
           <div>
             <Button loading={isLoading} type="submit">
-              Create Service
+              Update Service
             </Button>
           </div>
         </div>
@@ -339,4 +378,4 @@ const AddService = () => {
   );
 };
 
-export default AddService;
+export default EditService;

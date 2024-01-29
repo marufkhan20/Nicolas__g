@@ -7,10 +7,13 @@ import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
 import CasesPage from "./pages/cases";
 import AddCasePage from "./pages/cases/AddCase";
+import EditCasePage from "./pages/cases/EditCase";
 import Services from "./pages/services";
 import AddService from "./pages/services/AddService";
+import EditServicePage from "./pages/services/EditService";
 import TeamMembersPage from "./pages/teamMembers";
 import AddTeamMemberPage from "./pages/teamMembers/AddTeamMember";
+import EditTeamMemberPage from "./pages/teamMembers/EditTeamMember";
 
 function App() {
   return (
@@ -59,6 +62,14 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/services/edit-service/:id"
+          element={
+            <PrivateRoute>
+              <EditServicePage />
+            </PrivateRoute>
+          }
+        />
 
         {/* cases */}
         <Route
@@ -77,6 +88,14 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/cases/edit-case/:id"
+          element={
+            <PrivateRoute>
+              <EditCasePage />
+            </PrivateRoute>
+          }
+        />
 
         {/* team members */}
         <Route
@@ -92,6 +111,14 @@ function App() {
           element={
             <PrivateRoute>
               <AddTeamMemberPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/team-members/edit-member/:id"
+          element={
+            <PrivateRoute>
+              <EditTeamMemberPage />
             </PrivateRoute>
           }
         />

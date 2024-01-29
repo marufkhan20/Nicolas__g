@@ -2,6 +2,8 @@ const {
   createNewServiceController,
   getAllServicesController,
   getSingleServiceController,
+  deleteServiceController,
+  editServiceController,
 } = require("../controllers/serviceController");
 const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -15,5 +17,11 @@ router.get("/:id", getSingleServiceController);
 
 // create new service
 router.post("/", authMiddleware, createNewServiceController);
+
+// edit service
+router.put("/:id", authMiddleware, editServiceController);
+
+// delete service
+router.delete("/:id", authMiddleware, deleteServiceController);
 
 module.exports = router;

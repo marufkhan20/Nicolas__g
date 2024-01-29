@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
+import toast from "react-hot-toast";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useGetServicesQuery } from "../../app/features/service/serviceApi";
+import {
+  useDeleteServiceMutation,
+  useGetServicesQuery,
+} from "../../app/features/service/serviceApi";
+import Loading from "../shared/Loading";
 import Table from "../shared/Table";
 
 const Services = () => {
   const { data: services, isLoading } = useGetServicesQuery();
+
+  // delete service
+  const [
+    deleteService,
+    { data: deletedService, isLoading: deleteLoading, isError, error },
+  ] = useDeleteServiceMutation();
+
+  useEffect(() => {
+    if (!deleteLoading && isError) {
+      toast.error(error?.message);
+    }
+
+    if (!deleteLoading && !isError && deletedService?._id) {
+      toast.success("Service deleted successfully");
+    }
+  }, [deleteLoading, deletedService, error, isError]);
   return (
     <Table
       headers={["No.", "Thumbnail", "Title", "Short Description", "Action"]}
@@ -39,17 +60,16 @@ const Services = () => {
           {/* <span className="py-3">{service?.campDate}</span> */}
           <div className="py-3 pr-4 flex items-center gap-2 ml-2">
             <Link
-              to={`/forms/notice/edit-notice/${service?._id}`}
+              to={`/services/edit-service/${service?._id}`}
               className="rounded py-[6px] px-2 bg-primary text-white cursor-pointer"
             >
               <MdEdit />
             </Link>
             <button
               className="rounded py-[6px] px-2 bg-red-500 text-white cursor-pointer"
-              // onClick={() => deleteNotice(notice?._id)}
+              onClick={() => deleteService(service?._id)}
             >
-              {/* {loading ? <Loading className="w-4 h-4" /> : <MdDelete />} */}
-              <MdDelete />
+              {deleteLoading ? <Loading className="w-4 h-4" /> : <MdDelete />}
             </button>
           </div>
         </>
