@@ -1,15 +1,15 @@
 import React from "react";
-import AddCase from "../../components/cases/AddCase";
+import EditService from "../../components/services/EditService";
 import BreadCumb from "../../components/shared/BreadCumb";
 import DashboardLayout from "../../components/shared/DashboardLayout";
 
-const AddCasePage = () => {
+const EditServicePage = () => {
   return (
     <DashboardLayout>
-      <BreadCumb title="Add Case" page="Add Case" />
-      <AddCase />
+      <BreadCumb title="Edit Service" page="Edit Service" />
+      <EditService />
     </DashboardLayout>
   );
 };
 
-export default AddCasePage;
+export default EditServicePage;

@@ -3,7 +3,7 @@ import gsap from "gsap";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { HiMiniBars3BottomRight } from "react-icons/hi2";
-import HeaderModal from "./HeaderModal";
+import { IoMdClose } from "react-icons/io";
 
 const Header = () => {
   const [openHeaderModal, setOpenHeaderModal] = useState(false);
@@ -30,20 +30,47 @@ const Header = () => {
             <li className="font-extralight text-[18px] transition-all border-b border-transparent hover:border-secondary text-secondary hidden sm:block">
               <Link href="/contact">Contact</Link>
             </li>
-            <li
-              className="font-extralight text-[18px] transition-all text-secondary"
-              onClick={() => setOpenHeaderModal(true)}
-            >
-              <HiMiniBars3BottomRight className="cursor-pointer text-2xl" />
+          </ul>
+        </nav>
+
+        <li
+          className="block sm:hidden font-extralight text-[18px] transition-all text-secondary"
+          onClick={() => setOpenHeaderModal(true)}
+        >
+          <HiMiniBars3BottomRight className="cursor-pointer text-2xl" />
+        </li>
+      </header>
+
+      <div
+        className={`block sm:hidden ${
+          openHeaderModal ? "opacity-100 visible" : "opacity-0 invisible"
+        } transition-all duration-300 fixed inset-0 w-full h-full z-50 bg-primary-light`}
+      >
+        <div className="mt-5 flex justify-end w-full px-10 text-2xl">
+          <IoMdClose
+            className="cursor-pointer"
+            onClick={() => setOpenHeaderModal(false)}
+          />
+        </div>
+        <nav>
+          <ul className="flex items-center flex-col gap-5 mt-20">
+            <li className="font-extralight text-[22px] transition-all border-b border-transparent hover:border-secondary text-secondary">
+              <Link href="/services">Services</Link>
+            </li>
+            <li className="font-extralight text-[22px] transition-all border-b border-transparent hover:border-secondary text-secondary">
+              <Link href="/works">Work</Link>
+            </li>
+            <li className="font-extralight text-[22px] transition-all border-b border-transparent hover:border-secondary text-secondary">
+              <Link href="/contact">Contact</Link>
             </li>
           </ul>
         </nav>
-      </header>
+      </div>
 
-      <HeaderModal
+      {/* <HeaderModal
         openHeaderModal={openHeaderModal}
         setOpenHeaderModal={setOpenHeaderModal}
-      />
+      /> */}
     </>
   );
 };

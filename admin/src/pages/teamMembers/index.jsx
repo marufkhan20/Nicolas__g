@@ -7,9 +7,9 @@ import Button from "../../components/ui/Button";
 const TeamMembersPage = () => {
   return (
     <DashboardLayout>
-      <BreadCumb title="All Services" page="Services">
+      <BreadCumb title="All Team Members" page="Team Members">
         <div className="flex gap-3">
-          <Button href="/services/add-service">Add Service</Button>
+          <Button href="/team-members/add-member">Add Team Member</Button>
         </div>
       </BreadCumb>
 

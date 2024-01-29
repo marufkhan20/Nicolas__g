@@ -1,7 +1,7 @@
 import React from "react";
 import BreadCumb from "../../components/shared/BreadCumb";
 import DashboardLayout from "../../components/shared/DashboardLayout";
-import AddTeamMember from "../../components/teamMembers/addTeamMember";
+import AddTeamMember from "../../components/teamMembers/AddTeamMember";
 
 const AddTeamMemberPage = () => {
   return (

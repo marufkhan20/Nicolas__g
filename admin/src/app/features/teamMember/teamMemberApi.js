@@ -7,8 +7,8 @@ export const teamMemberApi = apiSlice.injectEndpoints({
       providesTags: ["getTeamMembers"],
     }),
     getTeamMember: builder.query({
-      query: (id) => `/api//${id}`,
-      providesTags: ["getCreditCard"],
+      query: (id) => `/api/team-members/${id}`,
+      providesTags: ["getTeamMember"],
     }),
     createTeamMember: builder.mutation({
       query: (data) => ({
@@ -16,38 +16,30 @@ export const teamMemberApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["getServices"],
+      invalidatesTags: ["getTeamMembers", "getDashboardInfo"],
     }),
-    uploadCreditCardInfo: builder.mutation({
-      query: (data) => ({
-        url: `/api/credit-cards/upload-credit-card-info`,
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["getCreditCards", "getCampaigns", "getDashboardInfo"],
-    }),
-    updateCreditCard: builder.mutation({
+    updateTeamMember: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/api/credit-cards/${id}`,
+        url: `/api/team-members/${id}`,
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["getCreditCards", "getCreditCard", "getDashboardInfo"],
+      invalidatesTags: ["getTeamMembers", "getTeamMember"],
     }),
-    deleteCreditCard: builder.mutation({
+    deleteTeamMember: builder.mutation({
       query: (id) => ({
-        url: `/api/credit-cards/${id}`,
+        url: `/api/team-members/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["getCreditCards", "getDashboardInfo"],
+      invalidatesTags: ["getTeamMembers", "getDashboardInfo"],
     }),
   }),
 });
 
 export const {
   useGetTeamMembersQuery,
+  useGetTeamMemberQuery,
   useCreateTeamMemberMutation,
-  useUploadCreditCardInfoMutation,
-  useUpdateCreditCardMutation,
-  useDeleteCreditCardMutation,
+  useUpdateTeamMemberMutation,
+  useDeleteTeamMemberMutation,
 } = teamMemberApi;

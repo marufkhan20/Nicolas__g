@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { BsFileEarmarkText } from "react-icons/bs";
 import { FaChevronDown } from "react-icons/fa6";
 import { FiHome } from "react-icons/fi";
-import { GoHistory } from "react-icons/go";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
@@ -241,7 +240,7 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
               >
                 <div className="flex items-center gap-3">
                   <BsFileEarmarkText className="text-lg" />
-                  <span>Forms</span>
+                  <span>Services</span>
                 </div>
                 <FaChevronDown
                   className={`text-xs ${openMenu === 1 && "rotate-180"}`}
@@ -254,7 +253,7 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
               >
                 <li>
                   <Link
-                    to="/forms/notice"
+                    to="/services"
                     className={`flex items-center gap-3 px-5 py-3 transition-all sub-menu ${
                       openSubMenu === 1
                         ? "text-primary gap-5 active"
@@ -262,12 +261,12 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
                     }`}
                   >
                     <div className="w-2 h-2 rounded-full border border-[#2a3547] box" />
-                    <span>Notice Concialation</span>
+                    <span>All Service</span>
                   </Link>
                 </li>
                 <li>
                   <Link
-                    to="/forms/credit-card"
+                    to="/services/add-service"
                     className={`flex items-center gap-3 px-5 py-3 transition-all sub-menu ${
                       openSubMenu === 2
                         ? "text-primary gap-5 active"
@@ -275,7 +274,7 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
                     }`}
                   >
                     <div className="w-2 h-2 rounded-full border border-[#2a3547] box" />
-                    <span>Credit Card</span>
+                    <span>Add Service</span>
                   </Link>
                 </li>
               </ul>
@@ -291,8 +290,8 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
                 onClick={() => setOpenMenu(openMenu === 2 ? false : 2)}
               >
                 <div className="flex items-center gap-3">
-                  <GoHistory className="text-lg" />
-                  <span>Campaign History</span>
+                  <IoBriefcaseOutline className="text-lg" />
+                  <span>Cases</span>
                 </div>
                 <FaChevronDown
                   className={`text-xs ${openMenu === 2 && "rotate-180"}`}
@@ -305,7 +304,7 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
               >
                 <li>
                   <Link
-                    to="/campaign/notice"
+                    to="/cases"
                     className={`flex items-center gap-3 px-5 py-3 transition-all sub-menu ${
                       openSubMenu === 3
                         ? "text-primary gap-5 active"
@@ -313,12 +312,12 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
                     }`}
                   >
                     <div className="w-2 h-2 rounded-full border border-[#2a3547] box" />
-                    <span>Notice Concialation</span>
+                    <span>All Case</span>
                   </Link>
                 </li>
                 <li>
                   <Link
-                    to="/campaign/credit-card"
+                    to="/cases/add-case"
                     className={`flex items-center gap-3 px-5 py-3 transition-all sub-menu ${
                       openSubMenu === 4
                         ? "text-primary gap-5 active"
@@ -326,7 +325,58 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
                     }`}
                   >
                     <div className="w-2 h-2 rounded-full border border-[#2a3547] box" />
-                    <span>Credit Card</span>
+                    <span>Add Case</span>
+                  </Link>
+                </li>
+              </ul>
+            </li>
+
+            <li className="overflow-hidden">
+              <span
+                className={`flex w-full items-center cursor-pointer justify-between gap-3 px-3 py-2 rounded-[7px] transition-all ${
+                  openMenu === 3
+                    ? "bg-primary text-white"
+                    : "hover:bg-[#ECF2FF] hover:text-primary"
+                }`}
+                onClick={() => setOpenMenu(openMenu === 3 ? false : 3)}
+              >
+                <div className="flex items-center gap-3">
+                  <HiOutlineUserGroup className="text-lg" />
+                  <span>Team Members</span>
+                </div>
+                <FaChevronDown
+                  className={`text-xs ${openMenu === 3 && "rotate-180"}`}
+                />
+              </span>
+              <ul
+                className={`transition-all ${
+                  openMenu === 3 ? "h-full" : "h-0"
+                }`}
+              >
+                <li>
+                  <Link
+                    to="/team-members"
+                    className={`flex items-center gap-3 px-5 py-3 transition-all sub-menu ${
+                      openSubMenu === 3
+                        ? "text-primary gap-5 active"
+                        : "hover:gap-5 hover:text-primary"
+                    }`}
+                  >
+                    <div className="w-2 h-2 rounded-full border border-[#2a3547] box" />
+                    <span>All Member</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/team-members/add-member"
+                    className={`flex items-center gap-3 px-5 py-3 transition-all sub-menu ${
+                      openSubMenu === 4
+                        ? "text-primary gap-5 active"
+                        : "hover:gap-5 hover:text-primary"
+                    }`}
+                  >
+                    <div className="w-2 h-2 rounded-full border border-[#2a3547] box" />
+                    <span>Add Member</span>
                   </Link>
                 </li>
               </ul>

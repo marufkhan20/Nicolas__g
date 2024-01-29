@@ -2,6 +2,8 @@ const {
   getAllCasesController,
   createNewCaseController,
   getSingleCaseController,
+  deleteCaseController,
+  editCaseController,
 } = require("../controllers/caseController");
 const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -15,5 +17,11 @@ router.get("/:id", getSingleCaseController);
 
 // create new service
 router.post("/", authMiddleware, createNewCaseController);
+
+// edit case
+router.put("/:id", authMiddleware, editCaseController);
+
+// delete case
+router.delete("/:id", authMiddleware, deleteCaseController);
 
 module.exports = router;

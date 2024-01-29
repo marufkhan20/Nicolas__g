@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { useCreateCaseMutation } from "../../../app/features/case/caseApi";
-import Button from "../../ui/Button";
-import Input from "../../ui/Input";
-import Label from "../../ui/Label";
+import { useCreateCaseMutation } from "../../app/features/case/caseApi";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import Label from "../ui/Label";
 
 const AddCase = () => {
   const [thumbnail, setThumbnail] = useState("");

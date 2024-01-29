@@ -90,8 +90,98 @@ const createNewServiceController = async (req, res) => {
   }
 };
 
+// edit service controller
+const editServiceController = async (req, res) => {
+  try {
+    const {
+      title,
+      shortDescription,
+      thumbnail,
+      description,
+      sectionTitle,
+      sectionSubTitle,
+      sectionDescription,
+      sectionImages,
+    } = req.body || {};
+    const { _id } = req.user || {};
+    const { id } = req.params || {};
+
+    // Helper function to upload an image and return a Promise
+    const uploadImage = (image) => {
+      return new Promise((resolve, reject) => {
+        cloudinary.uploader
+          .upload_stream((error, result) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(result?.secure_url);
+            }
+          })
+          .end(image);
+      });
+    };
+
+    // Upload thumbnail image
+    let thumbnailSrc;
+    if (thumbnail && !thumbnail?.includes("https://res.cloudinary.com/")) {
+      thumbnailSrc = await uploadImage(thumbnail);
+    }
+
+    // Upload service section images
+    let sectionImagesSrc = [];
+    if (sectionImages?.length > 0) {
+      const uploadPromises = sectionImages.map((item) => {
+        if (item && !item?.includes("https://res.cloudinary.com/")) {
+          return uploadImage(item);
+        }
+      });
+      if (uploadPromises?.length > 0 && !uploadPromises[0] === undefined) {
+        sectionImagesSrc = await Promise.all(uploadPromises);
+      }
+    }
+
+    const updatedService = await Service.findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          user: _id,
+          title,
+          shortDescription,
+          thumbnail: thumbnailSrc || thumbnail,
+          description,
+          sectionTitle,
+          sectionSubTitle,
+          sectionDescription,
+          sectionImages:
+            sectionImagesSrc?.length > 0 ? sectionImagesSrc : sectionImages,
+        },
+      },
+      { new: true }
+    );
+
+    res.status(201).json(updatedService);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+};
+
+// delete service controller
+const deleteServiceController = async (req, res) => {
+  try {
+    const { id } = req.params || {};
+    const deletedService = await Service.findByIdAndDelete(id);
+    res.status(200).json(deletedService);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+};
+
 module.exports = {
   getAllServicesController,
   getSingleServiceController,
   createNewServiceController,
+  editServiceController,
+  deleteServiceController,
 };
